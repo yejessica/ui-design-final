@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import logo from './logo.svg';
-
+console.log('✅ Loaded App.js')
 function App() {
   const message =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum orci quam, non mollis erat aliquam a.';
