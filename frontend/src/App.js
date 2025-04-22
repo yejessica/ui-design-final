@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import logo from './logo.svg';
-import FontMatchQuestion from './FontMatchQuestion.js';
+import FontMatchQuestion from './FontMatchQuestion';
 
 function App() {
+  const [page, setPage] = useState('home'); 
+
   const message =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum orci quam, non mollis erat aliquam a.';
 
@@ -17,7 +19,7 @@ function App() {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || page !== 'home') return; 
 
     const delay = deleting ? 30 : 60;
 
@@ -45,8 +47,29 @@ function App() {
     }, delay);
 
     return () => clearTimeout(timeout);
-  }, [index, deleting, isPaused]);
+  }, [index, deleting, isPaused, page]);
 
+  
+  if (page === 'quiz1') {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} alt="Logo" className="logo" />
+          <nav className="nav">
+            <a href="#">Font Types</a>
+            <a href="#">Parts of a Letter</a>
+            <button className="learn-btn" onClick={() => setPage('home')}>
+              Back
+            </button>
+          </nav>
+        </header>
+
+        <FontMatchQuestion />
+      </div>
+    );
+  }
+
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -55,7 +78,9 @@ function App() {
           <a href="#">Font Types</a>
           <a href="#">Parts of a Letter</a>
           <button className="learn-btn">Learn</button>
-          <button className="quiz-btn">Quiz Yourself</button>
+          <button className="quiz-btn" onClick={() => setPage('quiz1')}>
+            Quiz Yourself
+          </button>
         </nav>
       </header>
 
