@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import logo from './logo.svg';
+import FontMatchQuestion from './FontMatchQuestion';
 
 function App() {
   const message =
@@ -62,6 +63,7 @@ function App() {
         <h1>Anatomy of a Font</h1>
         <p className={`typing-text ${font}`}>{displayText}</p>
       </section>
+      <FontMatchQuestion />
     </div>
   );
 }
