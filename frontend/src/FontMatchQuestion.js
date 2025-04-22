@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './FontMatchQuestion.css'; 
 
 const fontData = [
   { id: '1', text: 'The quick brown fox jumps over the lazy dog', fontClass: 'serif', answer: 'Serif' },
