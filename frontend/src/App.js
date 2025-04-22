@@ -1,31 +1,31 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import logo from './logo.svg';
-console.log('✅ Loaded App.js')
+import FontMatchQuestion from './FontMatchQuestion';
+
+
 function App() {
+  const [page, setPage] = useState('home'); 
+
   const message =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum orci quam, non mollis erat aliquam a.';
-
   const fontCycle = ['georgia', 'montserrat', 'pacifico', 'firacode', 'anton'];
   const [fontIndex, setFontIndex] = useState(0);
   const font = fontCycle[fontIndex];
-
   const [displayText, setDisplayText] = useState('');
   const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    if (isPaused) return;
-
+    if (isPaused || page !== 'home') return;
     const delay = deleting ? 30 : 60;
-
     const timeout = setTimeout(() => {
       if (!deleting) {
         if (index < message.length) {
           setDisplayText(message.slice(0, index + 1));
           setIndex(index + 1);
-        } else if (index === message.length) {
+        } else {
           setIsPaused(true);
           setTimeout(() => {
             setDeleting(true);
@@ -42,9 +42,29 @@ function App() {
         }
       }
     }, delay);
-
     return () => clearTimeout(timeout);
-  }, [index, deleting, isPaused]);
+  }, [index, deleting, isPaused, page]);
+
+  
+  if (page === 'quiz1') {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} alt="Logo" className="logo" />
+          <nav className="nav">
+            <a href="#">Font Types</a>
+            <a href="#">Parts of a Letter</a>
+            <button className="learn-btn" onClick={() => setPage('home')}>
+              Back
+            </button>
+          </nav>
+        </header>
+
+        <FontMatchQuestion />
+      </div>
+    );
+  }
+
 
   return (
     <div className="App">
@@ -54,7 +74,12 @@ function App() {
           <a href="#">Font Types</a>
           <a href="#">Parts of a Letter</a>
           <button className="learn-btn">Learn</button>
-          <button className="quiz-btn" onClick={() => {console.log('✅ Quiz button clicked!'); alert('You clicked the quiz button!');}}>
+          <button
+            className="quiz-btn"
+            onClick={() => {
+              setPage('quiz1');
+            }}
+          >
             Quiz Yourself
           </button>
         </nav>
