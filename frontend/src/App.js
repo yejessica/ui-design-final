@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import FontMatchQuestion from './FontMatchQuestion'; 
 
 function App() {
-  const [page, setPage] = useState('home');  
+  const [page, setPage] = useState('home'); 
 
   const message =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum orci quam, non mollis erat aliquam a.';
@@ -19,16 +19,15 @@ function App() {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    if (isPaused || page !== 'home') return;
+    if (isPaused || page !== 'home') return; 
 
     const delay = deleting ? 30 : 60;
-
     const timeout = setTimeout(() => {
       if (!deleting) {
         if (index < message.length) {
           setDisplayText(message.slice(0, index + 1));
           setIndex(index + 1);
-        } else if (index === message.length) {
+        } else {
           setIsPaused(true);
           setTimeout(() => {
             setDeleting(true);
@@ -58,9 +57,7 @@ function App() {
           <nav className="nav">
             <a href="#">Font Types</a>
             <a href="#">Parts of a Letter</a>
-            <button className="learn-btn" onClick={() => setPage('home')}>
-              Back
-            </button>
+            <button className="learn-btn" onClick={() => setPage('home')}>Back</button>
           </nav>
         </header>
 
