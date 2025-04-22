@@ -54,7 +54,9 @@ function App() {
           <a href="#">Font Types</a>
           <a href="#">Parts of a Letter</a>
           <button className="learn-btn">Learn</button>
-          <button className="quiz-btn">Quiz Yourself</button>
+          <button className="quiz-btn" onClick={() => {console.log('✅ Quiz button clicked!'); alert('You clicked the quiz button!');}}>
+            Quiz Yourself
+          </button>
         </nav>
       </header>
 
