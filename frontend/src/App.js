@@ -75,7 +75,10 @@ function App() {
           <a href="#">Font Types</a>
           <a href="#">Parts of a Letter</a>
           <button className="learn-btn">Learn</button>
-          <button className="quiz-btn" onClick={() => setPage('quiz1')}>
+          <button className="quiz-btn" onClick={() => {
+  console.log("✅ Button clicked");
+  setPage('quiz1');
+}} => setPage('quiz1')}>
             Quiz Yourself
           </button>
         </nav>
