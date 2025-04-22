@@ -63,7 +63,6 @@ function App() {
         <h1>Anatomy of a Font</h1>
         <p className={`typing-text ${font}`}>{displayText}</p>
       </section>
-    <FontMatchQuestion />
     </div>
   );
 }
