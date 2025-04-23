@@ -113,4 +113,20 @@ body {
 .typing-text.anton {
   font-family: 'Anton', sans-serif;
 }
+
+.pacifico {
+  font-family: 'Pacifico', cursive;
+}
+.montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+.georgia {
+  font-family: Georgia, serif;
+}
+.firacode {
+  font-family: 'Fira Code', monospace;
+}
+.anton {
+  font-family: 'Anton', sans-serif;
+}
 /* end of chat */
