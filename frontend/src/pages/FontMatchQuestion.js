@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './../App.css'
 
 const fontData = [
   { id: '1', text: 'The quick brown fox jumps over the lazy dog', fontClass: 'montserrat', answer: 'Sans Serif' },

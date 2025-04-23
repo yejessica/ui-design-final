@@ -1,11 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 
 export default function QuizIntro({ onStart }) {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} alt="Logo" className="logo" />
           <nav className="nav">
             <a href="#">Font Types</a>
             <a href="#">Parts of a Letter</a>
