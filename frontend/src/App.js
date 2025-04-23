@@ -12,7 +12,7 @@ function App() {
 
   /* --------------- typing-animation state (unchanged) --------------- */
   const message =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum orci quam, non mollis erat aliquam a.";
+    "The anatomy of type refers to the visual elements that come together to form the letterforms in a typeface. Each letterform comprises of various components.";
   const fontCycle = ["georgia", "montserrat", "pacifico", "firacode", "anton"];
   const [fontIndex, setFontIndex] = useState(0);
   const font = fontCycle[fontIndex];
@@ -83,6 +83,7 @@ function Layout({ children, onBack, onFontTypes, go }) {
     <div className="App">
       <header className="App-header">
         <nav className="nav">
+        <button onClick={() => go("home")}>Home</button>
           <button onClick={onFontTypes}>Font Types</button>
           <button onClick={() => go("partsLetter")}>Parts of a Letter</button>
           {/* <button className="learn-btn" onClick={onBack}>Back</button> */}
