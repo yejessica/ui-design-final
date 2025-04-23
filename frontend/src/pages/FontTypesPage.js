@@ -114,8 +114,7 @@ export default function FontTypesPage({ go }) {
   return (
     <div className="relative min-h-screen px-6 py-6 lg:px-16 lg:py-10">
       {/* ── TOP-LEFT NAVIGATION ──────────────────────────────────────── */}
-      <nav className="flex gap-4">
-        {/* HOME button added here */}
+      {/* <nav className="flex gap-4">
         <button
           className="rounded-md px-5 py-2 text-sm font-semibold bg-blue-100 text-blue-600 hover:bg-blue-200"
           onClick={() => go("home")}
@@ -123,7 +122,6 @@ export default function FontTypesPage({ go }) {
           Home
         </button>
 
-        {/* current page (Font Types) marked active */}
         <button
           className="rounded-md px-5 py-2 text-sm font-semibold bg-blue-200 text-blue-900"
           onClick={() => go("fontTypes")}
@@ -144,7 +142,7 @@ export default function FontTypesPage({ go }) {
         >
           Quiz
         </button>
-      </nav>
+      </nav> */}
 
       {/* heading */}
       <h1 className="mt-8 text-center text-3xl lg:text-4xl font-serif text-blue-600">

@@ -4,12 +4,12 @@ export default function QuizIntro({ onStart }) {
     return (
       <div className="App">
         <header className="App-header">
-          <nav className="nav">
+          {/* <nav className="nav">
             <a href="#">Font Types</a>
             <a href="#">Parts of a Letter</a>
             <button className="learn-btn">Learn</button>
             <button className="quiz-btn" onClick={() => onStart('home')}>Back</button>
-          </nav>
+          </nav> */}
         </header>
   
         <div className="flex flex-col items-center justify-center min-h-screen text-center -mt-20">

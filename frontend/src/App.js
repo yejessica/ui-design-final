@@ -3,10 +3,9 @@ import "./App.css";
 import FontMatchQuestion from "./pages/FontMatchQuestion";
 import QuizIntro from "./pages/QuizIntro";
 import LetterQuiz from "./pages/LetterQuiz";
-import FontTypesPage from "./pages/FontTypesPage";   // ← NEW
+import FontTypesPage from "./pages/FontTypesPage";
 import PartsOfLetter from "./pages/PartsOfLetter";
 import ResultsPage from "./pages/ResultsPage";
-
 
 function App() {
   const [page, setPage] = useState("home");
@@ -51,70 +50,43 @@ function App() {
   }, [index, deleting, isPaused, page, fontCycle.length]);
 
   /* ---------------------------- ROUTES ---------------------------- */
-  if (page === "fontTypes") return <FontTypesPage go={setPage} />;          // ← NEW
-
-  if (page === "partsLetter") return <PartsOfLetter go={setPage} />;
-
-  if (page === "quizIntro")
-    return <QuizIntro onStart={(next) => setPage(next)} />;
-
-  if (page === "quiz1")
-    return (
-      <Layout onBack={() => setPage("home")} onFontTypes={() => setPage("fontTypes")}>
-        <FontMatchQuestion onNext={() => setPage("quiz2")} />
-      </Layout>
-    );
-
-  if (page === "quiz2")
-  return (
-    <Layout onBack={() => setPage("home")} onFontTypes={() => setPage("fontTypes")}>
-      <LetterQuiz onNext={() => setPage("results")} />
-    </Layout>
-  );
-
-  if (page === "results") {
-  return (
-    <ResultsPage
-      onRestart={() => {
-        setPage("home");
-      }}
-    />
-  );
-}
-
-  /* --------------------------- HOME PAGE -------------------------- */
-  return (
-    <div className="App">
-      <header className="App-header">
-        <nav className="nav">
-          <button onClick={() => setPage("fontTypes")}>Font Types</button> {/* ← CHANGED */}
-          <button onClick={() => setPage("partsLetter")}>Parts of a Letter</button>
-          <button className="learn-btn">Learn</button>
-          <button className="quiz-btn" onClick={() => setPage("quizIntro")}>
-            Quiz Yourself
-          </button>
-        </nav>
-      </header>
-
+  let content;
+  if (page === "fontTypes") content = <FontTypesPage go={setPage} />;
+  else if (page === "partsLetter") content = <PartsOfLetter go={setPage} />;
+  else if (page === "quizIntro") content = <QuizIntro onStart={(next) => setPage(next)} />;
+  else if (page === "quiz1") content = <FontMatchQuestion onNext={() => setPage("quiz2")} />;
+  else if (page === "quiz2") content = <LetterQuiz onNext={() => setPage("results")} />;
+  else if (page === "results") content = <ResultsPage onRestart={() => setPage("home")} />;
+  else {
+    content = (
       <section className="hero">
         <h1>Anatomy of a Font</h1>
         <p className={`typing-text ${font}`}>{displayText}</p>
       </section>
-    </div>
+    );
+  }
+
+  return (
+    <Layout
+      onBack={() => setPage("home")}
+      onFontTypes={() => setPage("fontTypes")}
+      go={setPage}
+    >
+      {content}
+    </Layout>
   );
 }
 
-/* ────────────────────── small reusable layout ─────────────────────── */
-function Layout({ children, onBack, onFontTypes }) {
+/* ────────────────────── Reusable layout ─────────────────────── */
+function Layout({ children, onBack, onFontTypes, go }) {
   return (
     <div className="App">
       <header className="App-header">
         <nav className="nav">
-          <button onClick={onFontTypes}>Font Types</button>  {/* ← CHANGED */}
-          <a href="#">Parts of a Letter</a>
-          <button className="learn-btn" onClick={onBack}>
-            Back
-          </button>
+          <button onClick={onFontTypes}>Font Types</button>
+          <button onClick={() => go("partsLetter")}>Parts of a Letter</button>
+          {/* <button className="learn-btn" onClick={onBack}>Back</button> */}
+          <button className="quiz-btn" onClick={() => go("quizIntro")}>Quiz Yourself</button>
         </nav>
       </header>
       {children}
