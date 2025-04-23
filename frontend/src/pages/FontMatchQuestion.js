@@ -37,6 +37,21 @@ export default function FontMatchQuestion({ onNext }) {
 
   const isComplete = fontTypes.every((type) => matched[type]);
 
+  // Submit drag-and-drop results to backend, then advance
+  const handleSubmit = async () => {
+    const matchesPayload = Object.fromEntries(
+      Object.entries(matched).map(([fontType, fontObj]) => [fontType, fontObj.id])
+    );
+
+    await fetch('/api/quiz/1', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ matches: matchesPayload })
+    });
+
+    onNext();
+  };
+
   return (
     <div className="quiz-container p-8">
       <h2 className="text-3xl font-bold text-blue-600 mb-2">Mix & Match</h2>
@@ -44,20 +59,20 @@ export default function FontMatchQuestion({ onNext }) {
 
       <div className="flex justify-center items-start gap-10">
         <div className="flex flex-col gap-6">
-          {fontData.filter((f) => !Object.values(matched).includes(f)).map((font) => (
-            <div
-              key={font.id}
-              draggable
-              onDragStart={() => handleDragStart(font.id)}
-              className={`bg-blue-100 p-4 rounded-xl cursor-move text-lg text-center ${font.fontClass}`}
-
-            >
-              {font.text}
-            </div>
-          ))}
+          {fontData
+            .filter((f) => !Object.values(matched).includes(f))
+            .map((font) => (
+              <div
+                key={font.id}
+                draggable
+                onDragStart={() => handleDragStart(font.id)}
+                className={`bg-blue-100 p-4 rounded-xl cursor-move text-lg text-center ${font.fontClass}`}
+              >
+                {font.text}
+              </div>
+            ))}
         </div>
 
-        
         <div className="flex flex-col gap-6 bg-gray-100 p-6 rounded-xl shadow-md">
           {fontTypes.map((type) => (
             <div
@@ -72,11 +87,9 @@ export default function FontMatchQuestion({ onNext }) {
                   : 'bg-gray-200'
               }`}
             >
-              <div className="font-semibold mb-2 text-lg">
-                {type}
-              </div>
+              <div className="font-semibold mb-2 text-lg">{type}</div>
               {matched[type] && (
-                <div className={`bg-blue-100 p-2 rounded typing-text ${matched[type].fontClass}`}>
+                <div className={`bg-blue-100 p-2 rounded typing-text ${matched[type].fontClass}`}> 
                   {matched[type].text}
                 </div>
               )}
@@ -88,7 +101,7 @@ export default function FontMatchQuestion({ onNext }) {
       {isComplete && (
         <div className="mt-8 text-center">
           <button
-            onClick={onNext || (() => alert('Next question coming soon!'))}
+            onClick={handleSubmit}
             className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg"
           >
             Next Question
