@@ -4,6 +4,8 @@ import FontMatchQuestion from "./pages/FontMatchQuestion";
 import QuizIntro from "./pages/QuizIntro";
 import LetterQuiz from "./pages/LetterQuiz";
 import FontTypesPage from "./pages/FontTypesPage";   // ← NEW
+import PartsOfLetter from "./pages/PartsOfLetter";
+
 
 function App() {
   const [page, setPage] = useState("home");
@@ -49,6 +51,8 @@ function App() {
 
   /* ---------------------------- ROUTES ---------------------------- */
   if (page === "fontTypes") return <FontTypesPage go={setPage} />;          // ← NEW
+
+  if (page === "partsLetter") return <PartsOfLetter go={setPage} />;
 
   if (page === "quizIntro")
     return <QuizIntro onStart={(next) => setPage(next)} />;
