@@ -43,14 +43,14 @@ export default function FontMatchQuestion({ onNext }) {
       <p className="mb-8 text-xl text-gray-700">Match each font to the correct spot!</p>
 
       <div className="flex justify-center items-start gap-10">
-        {/* 左边拖拽字体样本 */}
         <div className="flex flex-col gap-6">
           {fontData.filter((f) => !Object.values(matched).includes(f)).map((font) => (
             <div
               key={font.id}
               draggable
               onDragStart={() => handleDragStart(font.id)}
-              className={`bg-blue-100 p-4 rounded-xl cursor-move text-lg text-center typing-text ${font.fontClass}`}
+              className={`bg-blue-100 p-4 rounded-xl cursor-move text-lg text-center ${font.fontClass}`}
+
             >
               {font.text}
             </div>
