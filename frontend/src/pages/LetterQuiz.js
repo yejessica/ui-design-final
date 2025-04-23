@@ -1,22 +1,34 @@
 import React, { useState } from 'react';
 import letterImage from './../assets/letterquiz.png';
 
-const LetterQuiz = () => {
+const LetterQuiz = ({ onNext }) => {
   const [selected, setSelected] = useState(null);
   const [correct, setCorrect] = useState(false);
   const [explanationShown, setExplanationShown] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
   const correctAnswer = 'Leg';
-
   const options = ['Leg', 'Arm', 'Ear', 'Shoulder'];
 
-  const handleSelect = (option) => {
+  const handleSelect = async (option) => {
     if (disabled || correct) return;
     setSelected(option);
+
     if (option === correctAnswer) {
       setCorrect(true);
       setExplanationShown(true);
+      try {
+        // send answer to backend
+        await fetch('/api/quiz/2', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ answer: option })
+        });
+      } catch (err) {
+        console.error('Failed to record answer', err);
+      }
+      // go to results page
+      onNext();
     } else {
       setDisabled(true);
       setTimeout(() => {
@@ -34,7 +46,7 @@ const LetterQuiz = () => {
 
   return (
     <div className="p-8">
-      {/* 题干 + 图片 */}
+      {/* Question + Image */}
       <div className="flex justify-between items-start mb-6">
         <div>
           <h2 className="text-3xl font-bold text-blue-700 mb-4">
@@ -61,7 +73,7 @@ const LetterQuiz = () => {
         />
       </div>
 
-      {/* 答案解释 */}
+      {/* Explanation */}
       {explanationShown && (
         <div className="text-lg mt-6">
           ✅ This part of the letter is the <strong>leg</strong>, which extends downward and is attached at one end and free at the other.

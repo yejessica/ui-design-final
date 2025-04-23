@@ -5,6 +5,7 @@ import QuizIntro from "./pages/QuizIntro";
 import LetterQuiz from "./pages/LetterQuiz";
 import FontTypesPage from "./pages/FontTypesPage";   // ← NEW
 import PartsOfLetter from "./pages/PartsOfLetter";
+import ResultsPage from "./pages/ResultsPage";
 
 
 function App() {
@@ -65,11 +66,21 @@ function App() {
     );
 
   if (page === "quiz2")
-    return (
-      <Layout onBack={() => setPage("home")} onFontTypes={() => setPage("fontTypes")}>
-        <LetterQuiz />
-      </Layout>
-    );
+  return (
+    <Layout onBack={() => setPage("home")} onFontTypes={() => setPage("fontTypes")}>
+      <LetterQuiz onNext={() => setPage("results")} />
+    </Layout>
+  );
+
+  if (page === "results") {
+  return (
+    <ResultsPage
+      onRestart={() => {
+        setPage("home");
+      }}
+    />
+  );
+}
 
   /* --------------------------- HOME PAGE -------------------------- */
   return (
