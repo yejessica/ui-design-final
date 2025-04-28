@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './../App.css'
+import './../App.css';
 
 const fontData = [
   { id: '1', text: 'The quick brown fox jumps over the lazy dog', fontClass: 'montserrat', answer: 'Sans Serif' },
@@ -37,7 +37,6 @@ export default function FontMatchQuestion({ onNext }) {
 
   const isComplete = fontTypes.every((type) => matched[type]);
 
-  // Submit drag-and-drop results to backend, then advance
   const handleSubmit = async () => {
     const matchesPayload = Object.fromEntries(
       Object.entries(matched).map(([fontType, fontObj]) => [fontType, fontObj.id])
@@ -53,8 +52,9 @@ export default function FontMatchQuestion({ onNext }) {
   };
 
   return (
-    <div className="quiz-container p-8">
+    <div className="quiz-container p-8 relative min-h-screen">
       <h2 className="text-3xl font-bold text-blue-600 mb-2">Mix & Match</h2>
+      <p className="mb-2 text-gray-700 text-lg">Hover over and drag each sentence to the correct font category.</p>
       <p className="mb-8 text-xl text-gray-700">Match each font to the correct spot!</p>
 
       <div className="flex justify-center items-start gap-10">
@@ -89,7 +89,7 @@ export default function FontMatchQuestion({ onNext }) {
             >
               <div className="font-semibold mb-2 text-lg">{type}</div>
               {matched[type] && (
-                <div className={`bg-blue-100 p-2 rounded typing-text ${matched[type].fontClass}`}> 
+                <div className={`bg-blue-100 p-2 rounded typing-text ${matched[type].fontClass}`}>
                   {matched[type].text}
                 </div>
               )}
@@ -108,6 +108,13 @@ export default function FontMatchQuestion({ onNext }) {
           </button>
         </div>
       )}
+
+      {/* Progress bar 左下角 */}
+      <div className="fixed bottom-4 left-4 w-1/4">
+        <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="bg-green-400 h-2 rounded-full" style={{ width: '33.33%' }} />
+        </div>
+      </div>
     </div>
   );
 }
