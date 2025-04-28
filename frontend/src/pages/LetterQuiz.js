@@ -6,6 +6,7 @@ const LetterQuiz = ({ onNext }) => {
   const [correct, setCorrect] = useState(false);
   const [explanationShown, setExplanationShown] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [showCheckResults, setShowCheckResults] = useState(false);
 
   const correctAnswer = 'Leg';
   const options = ['Leg', 'Arm', 'Ear', 'Shoulder'];
@@ -17,8 +18,8 @@ const LetterQuiz = ({ onNext }) => {
     if (option === correctAnswer) {
       setCorrect(true);
       setExplanationShown(true);
+      setShowCheckResults(true);
       try {
-        // send answer to backend
         await fetch('/api/quiz/2', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -27,8 +28,6 @@ const LetterQuiz = ({ onNext }) => {
       } catch (err) {
         console.error('Failed to record answer', err);
       }
-      // go to results page
-      onNext();
     } else {
       setDisabled(true);
       setTimeout(() => {
@@ -45,13 +44,21 @@ const LetterQuiz = ({ onNext }) => {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 relative min-h-screen">
+      {/* Progress Bar */}
+      <div className="fixed bottom-4 left-4 w-1/4">
+        <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="bg-green-400 h-2 rounded-full" style={{ width: '66.66%' }} />
+        </div>
+      </div>
+
       {/* Question + Image */}
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h2 className="text-3xl font-bold text-blue-700 mb-4">
+          <h2 className="text-3xl font-bold text-blue-700 mb-2">
             1. What part of the letter is this?
           </h2>
+          <p className="text-lg mb-4">Click on the correct part of the letter.</p>
 
           <div className="text-xl space-y-3">
             {options.map((option, idx) => (
@@ -77,6 +84,18 @@ const LetterQuiz = ({ onNext }) => {
       {explanationShown && (
         <div className="text-lg mt-6">
           ✅ This part of the letter is the <strong>leg</strong>, which extends downward and is attached at one end and free at the other.
+        </div>
+      )}
+
+      {/* Check Result Button */}
+      {showCheckResults && (
+        <div className="mt-8">
+          <button
+            onClick={onNext}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Check Results
+          </button>
         </div>
       )}
     </div>
