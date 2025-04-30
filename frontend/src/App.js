@@ -1,98 +1,117 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import FontMatchQuestion from "./pages/FontMatchQuestion";
-import QuizIntro from "./pages/QuizIntro";
-import LetterQuiz from "./pages/LetterQuiz";
+
 import FontTypesPage from "./pages/FontTypesPage";
-import PartsOfLetter from "./pages/PartsOfLetter";
+import QuizIntro from "./pages/QuizIntro";
+import FontMatchQuestion from "./pages/FontMatchQuestion";
+import LetterQuiz from "./pages/LetterQuiz";
 import ResultsPage from "./pages/ResultsPage";
 
 function App() {
   const [page, setPage] = useState("home");
-
-  /* --------------- typing-animation state (unchanged) --------------- */
-  const message =
-    "The anatomy of type refers to the visual elements that come together to form the letterforms in a typeface. Each letterform comprises of various components.";
-  const fontCycle = ["georgia", "montserrat", "pacifico", "firacode", "anton"];
-  const [fontIndex, setFontIndex] = useState(0);
-  const font = fontCycle[fontIndex];
-  const [displayText, setDisplayText] = useState("");
-  const [index, setIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [deleting, setDeleting] = useState(false);
+  const [typingDone, setTypingDone] = useState(false);
+  const go = (target) => setPage(target);
 
   useEffect(() => {
-    if (isPaused || page !== "home") return;
-    const delay = deleting ? 30 : 60;
-    const timeout = setTimeout(() => {
-      if (!deleting) {
-        if (index < message.length) {
-          setDisplayText(message.slice(0, index + 1));
-          setIndex(index + 1);
-        } else {
-          setIsPaused(true);
-          setTimeout(() => {
-            setDeleting(true);
-            setIsPaused(false);
-          }, 1000);
-        }
-      } else {
-        if (index > 0) {
-          setDisplayText(message.slice(0, index - 1));
-          setIndex(index - 1);
-        } else {
-          setFontIndex((prev) => (prev + 1) % fontCycle.length);
-          setDeleting(false);
-        }
-      }
-    }, delay);
-    return () => clearTimeout(timeout);
-  }, [index, deleting, isPaused, page, fontCycle.length]);
+    if (page === "home") {
+      setTypingDone(false);
+    }
+  }, [page]);
 
-  /* ---------------------------- ROUTES ---------------------------- */
   let content;
-  if (page === "fontTypes") content = <FontTypesPage go={setPage} />;
-  else if (page === "partsLetter") content = <PartsOfLetter go={setPage} />;
-  else if (page === "quizIntro") content = <QuizIntro onStart={(next) => setPage(next)} />;
-  else if (page === "quiz1") content = <FontMatchQuestion onNext={() => setPage("quiz2")} />;
-  else if (page === "quiz2") content = <LetterQuiz onNext={() => setPage("results")} />;
-  else if (page === "results") content = <ResultsPage onRestart={() => setPage("home")} />;
-  else {
-    content = (
-      <section className="hero">
-        <h1>Anatomy of a Font</h1>
-        <p className={`typing-text ${font}`}>{displayText}</p>
-      </section>
-    );
+  switch (page) {
+    case "fontTypes":
+      content = <FontTypesPage go={go} />;
+      break;
+
+    case "quizIntro":
+      content = <QuizIntro onStart={go} />;
+      break;
+
+    case "quiz1":
+      content = <FontMatchQuestion onNext={() => go("quiz2")} />;
+      break;
+
+    case "quiz2":
+      content = <LetterQuiz onNext={() => go("results")} />;
+      break;
+
+    case "results":
+      content = <ResultsPage onRestart={() => go("home")} />;
+      break;
+
+    default:
+      content = (
+        <section className="hero">
+          <div className="definition-block">
+            <h1>font•anatomy</h1>
+            <p className="ipa">
+              <em>/ˈfänt əˈnadəmē/</em>
+            </p>
+            <p className="noun">noun</p>
+          </div>
+
+          <div className="typing-container">
+            <Typing
+              text={`the anatomy of type refers to the visual elements that come together to form the letterforms in a typeface.\n\neach letterform comprises of various components.`}
+              onComplete={() => setTypingDone(true)}
+            />
+          </div>
+
+          {typingDone && (
+            <div className="hero-actions">
+              <button
+                className="start-button"
+                onClick={() => go("fontTypes")}
+              >
+                start learning
+              </button>
+            </div>
+          )}
+        </section>
+      );
   }
 
   return (
-    <Layout
-      onBack={() => setPage("home")}
-      onFontTypes={() => setPage("fontTypes")}
-      go={setPage}
-    >
-      {content}
-    </Layout>
-  );
-}
-
-/* ────────────────────── Reusable layout ─────────────────────── */
-function Layout({ children, onBack, onFontTypes, go }) {
-  return (
     <div className="App">
-      <header className="App-header">
-        <nav className="nav">
-        <button onClick={() => go("home")}>Home</button>
-          <button onClick={onFontTypes}>Font Types</button>
-          <button onClick={() => go("partsLetter")}>Parts of a Letter</button>
-          {/* <button className="learn-btn" onClick={onBack}>Back</button> */}
-          <button className="quiz-btn" onClick={() => go("quizIntro")}>Quiz Yourself</button>
-        </nav>
+      <header className="App-header nav">
+        <div className="nav-left">
+          <button className="logo" onClick={() => go("home")}>
+            a • f
+          </button>
+        </div>
+        <div className="nav-right">
+          <button onClick={() => go("fontTypes")}>learn</button>
+          <button onClick={() => go("quizIntro")}>quiz</button>
+        </div>
       </header>
-      {children}
+      {content}
     </div>
   );
 }
+
+const Typing = ({ text, onComplete }) => {
+  const [displayedText, setDisplayedText] = useState("");
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    if (idx < text.length) {
+      const t = setTimeout(() => {
+        setDisplayedText((t) => t + text[idx]);
+        setIdx(idx + 1);
+      }, 30);
+      return () => clearTimeout(t);
+    }
+  }, [idx, text]);
+
+  // Notify when typing finishes
+  useEffect(() => {
+    if (idx === text.length && onComplete) {
+      onComplete();
+    }
+  }, [idx, text.length, onComplete]);
+
+  return <p className="typing">{displayedText}</p>;
+};
 
 export default App;

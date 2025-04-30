@@ -1,132 +1,163 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-
-.App-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap');
 
 body {
   margin: 0;
-  font-family: 'Georgia', serif;
-  color: #000000;
-  letter-spacing: -1px;
-  font-size: 2rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #f7f7fb;
+  color: #2d2d2d;
 }
 
-/* title of website */
-.hero h1 {
-  font-family: 'Georgia', serif;
-  font-size: 6rem;
-  margin-bottom: 20px;
-  font-weight: 500;
-  letter-spacing: 0px;
-  color: #000000;
-}
-
-/* navbar */
-.nav a,
-.quiz-btn,
-.learn-btn {
-  font-family: 'Georgia', serif;
-}
-
-/* react logo, should change this */
-.logo {
-  height: 40px;
-}
-
-.nav {
+.App-header.nav {
+  background-color: #d3dee7;
+  padding: 1rem 2rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
+}
+
+.nav-left .logo {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  cursor: pointer;
+}
+
+.nav-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-right button {
+  background: none;
+  border: 1px solid #888;
+  border-radius: 12px;
+  padding: 0.3rem 0.8rem;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.nav-right button:hover {
+  background-color: #c0d0dd;
+}
+
+
+.nav button:hover {
+  background-color: #c0d0dd;
 }
 
 .hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
   text-align: center;
-  padding: 100px 20px 60px;
 }
 
-
-/* the latin paragraph */
-.hero p {
-  font-size: 2rem;
-  color: #555;
-  max-width: 600px;
-  margin: auto;
-  line-height: 1.3;
-  color: #000000;
+.definition-block {
+  margin-bottom: 2rem;
 }
 
-
-/* chat coded this, the effect might be cool */
-.font-demo {
-  text-align: center;
-  margin: 80px 20px;
+.definition-block h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
 }
 
-.font-demo h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.typing-text {
+.definition-block .ipa {
   font-size: 1.1rem;
-  max-width: 500px;
-  margin: 0 auto;
-  overflow: hidden;
+  margin: 0.25rem 0;
   color: #555;
 }
 
-.typing-text::after {
-  content: '';
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  background: #000;
-  animation: blink 1s infinite;
-  margin-left: 4px;
+.definition-block .noun {
+  font-weight: 600;
+  color: #999;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
 }
 
-@keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+.typing {
+  font-size: 1.2rem;
+  max-width: 600px;
+  color: #444;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
 }
 
-.typing-text.georgia {
-  font-family: Georgia, serif;
+.hero .buttons {
+  display: flex;
+  gap: 1rem;
 }
 
-.typing-text.montserrat {
-  font-family: 'Montserrat', sans-serif;
+.hero .buttons button {
+  background-color: #d3dee7;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-.typing-text.pacifico {
-  font-family: 'Pacifico', cursive;
+.hero .buttons button:hover {
+  background-color: #c0d0dd;
 }
 
-.typing-text.firacode {
-  font-family: 'Fira Code', monospace;
+.hero-actions {
+  margin-top: 2.5rem;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 0.5s;
 }
 
-.typing-text.anton {
-  font-family: 'Anton', sans-serif;
+.start-button {
+  background: none;
+  border: 1px solid #888;
+  border-radius: 12px;
+  padding: 1rem 2.5rem;
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s ease,
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
 }
 
-.pacifico {
-  font-family: 'Pacifico', cursive;
+.start-button:hover {
+  background-color: #d3dee7;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
-.montserrat {
-  font-family: 'Montserrat', sans-serif;
+
+.start-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.georgia {
-  font-family: Georgia, serif;
+
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.firacode {
-  font-family: 'Fira Code', monospace;
+
+.hero-actions {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 0.5s;
 }
-.anton {
-  font-family: 'Anton', sans-serif;
-}
-/* end of chat */
