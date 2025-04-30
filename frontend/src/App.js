@@ -83,7 +83,7 @@ function App() {
       <header className="App-header nav">
         <div className="nav-left">
           <button className="logo" onClick={() => go("home")}>
-            a • f
+            f • a
           </button>
         </div>
         <div className="nav-right">
