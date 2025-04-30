@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import letterImage from './../assets/letterquiz.png';
+// import letterImage from './../assets/letterquiz.png';
 
 const LetterQuiz = ({ onNext }) => {
   const [selected, setSelected] = useState(null);
@@ -74,7 +74,7 @@ const LetterQuiz = ({ onNext }) => {
         </div>
 
         <img
-          src={letterImage}
+          src={`leg_letterquiz.png`}
           alt="letter part"
           className="w-[250px] h-[250px] object-contain"
         />
