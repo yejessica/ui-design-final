@@ -6,6 +6,8 @@ import QuizIntro from "./pages/QuizIntro";
 import FontMatchQuestion from "./pages/FontMatchQuestion";
 import LetterQuiz from "./pages/LetterQuiz";
 import ResultsPage from "./pages/ResultsPage";
+import PartsOfLetter from "./pages/PartsOfLetter";
+
 
 function App() {
   const [page, setPage] = useState("home");
@@ -22,6 +24,10 @@ function App() {
   switch (page) {
     case "fontTypes":
       content = <FontTypesPage go={go} />;
+      break;
+
+    case "partsLetter":
+      content = <PartsOfLetter go={setPage} />;
       break;
 
     case "quizIntro":
@@ -81,7 +87,8 @@ function App() {
           </button>
         </div>
         <div className="nav-right">
-          <button onClick={() => go("fontTypes")}>learn</button>
+          <button onClick={() => go("fontTypes")}>types of fonts</button>
+          <button onClick={() => go("partsLetter")}>parts of a letter</button>
           <button onClick={() => go("quizIntro")}>quiz</button>
         </div>
       </header>
