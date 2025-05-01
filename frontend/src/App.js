@@ -111,7 +111,6 @@ const Typing = ({ text, onComplete }) => {
     }
   }, [idx, text]);
 
-  // Notify when typing finishes
   useEffect(() => {
     if (idx === text.length && onComplete) {
       onComplete();

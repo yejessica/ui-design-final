@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import letterImage from './../assets/letterquiz.png';
 
 const LetterQuiz = ({ onNext }) => {
   const [selected, setSelected] = useState(null);

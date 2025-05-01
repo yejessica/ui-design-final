@@ -1,3 +1,4 @@
+// src/pages/FontMatchQuestion.js
 import React, { useState } from 'react';
 import './../App.css';
 
@@ -15,25 +16,19 @@ export default function FontMatchQuestion({ onNext }) {
   const [draggedId, setDraggedId] = useState(null);
   const [feedback, setFeedback] = useState({});
 
-  const handleDragStart = (id) => {
-    setDraggedId(id);
+  const handleDragStart = (e, font) => {
+    setDraggedId(font.id);
   };
 
-  const handleDrop = (type) => {
-    const dragged = fontData.find((f) => f.id === draggedId);
-    if (dragged) {
-      if (dragged.answer === type) {
-        setMatched((prev) => ({ ...prev, [type]: dragged }));
-        setFeedback((prev) => ({ ...prev, [type]: 'correct' }));
-      } else {
-        setFeedback((prev) => ({ ...prev, [type]: 'incorrect' }));
-        setTimeout(() => {
-          setFeedback((prev) => ({ ...prev, [type]: null }));
-        }, 800);
-      }
-    }
+  const handleDrop = (e, type) => {
+    e.preventDefault();
+    const font = fontData.find((f) => f.id === draggedId);
+    setMatched({ ...matched, [type]: font });
+    setFeedback({ ...feedback, [type]: font.answer === type });
     setDraggedId(null);
   };
+
+  const handleDragOver = (e) => e.preventDefault();
 
   const isComplete = fontTypes.every((type) => matched[type]);
 
@@ -47,74 +42,75 @@ export default function FontMatchQuestion({ onNext }) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ matches: matchesPayload })
     });
-
     onNext();
   };
 
   return (
-    <div className="quiz-container p-8 relative min-h-screen">
-      <h2 className="text-3xl font-bold text-blue-600 mb-2">Mix & Match</h2>
-      <p className="mb-2 text-gray-700 text-lg">Hover over and drag each sentence to the correct font category.</p>
-      <p className="mb-8 text-xl text-gray-700">Match each font to the correct spot!</p>
+    <section className="hero min-h-screen">
+      <div className="quiz-container">
+        <h2 className="text-3xl font-bold text-blue-600 mb-2">Mix &amp; Match</h2>
+        <p className="mb-2 text-gray-700 text-lg">Hover over and drag each sentence to the correct font category.</p>
+        <p className="mb-8 text-xl text-gray-700">Match each font to the correct spot!</p>
 
-      <div className="flex justify-center items-start gap-10">
-        <div className="flex flex-col gap-6">
-          {fontData
-            .filter((f) => !Object.values(matched).includes(f))
-            .map((font) => (
+        <div className="flex justify-center items-start gap-10">
+          <div className="flex flex-col gap-6">
+            {fontData
+              .filter((f) => !Object.values(matched).includes(f))
+              .map((font) => (
+                <div
+                  key={font.id}
+                  draggable
+                  onDragStart={(e) => handleDragStart(e, font)}
+                  className="p-4 bg-gray-200 rounded cursor-grab"
+                >
+                  <p className={`typing-text ${font.fontClass}`}>{font.text}</p>
+                </div>
+              ))}
+          </div>
+
+          <div className="flex flex-col gap-6">
+            {fontTypes.map((type) => (
               <div
-                key={font.id}
-                draggable
-                onDragStart={() => handleDragStart(font.id)}
-                className={`bg-blue-100 p-4 rounded-xl cursor-move text-lg text-center ${font.fontClass}`}
+                key={type}
+                onDragOver={handleDragOver}
+                onDrop={(e) => handleDrop(e, type)}
+                className={`p-4 rounded border-2 border-dashed ${
+                  matched[type]
+                    ? feedback[type]
+                      ? 'border-green-500'
+                      : 'border-red-500'
+                    : 'border-gray-300'
+                }`}
               >
-                {font.text}
+                <div className="font-semibold mb-2 text-lg">{type}</div>
+                {matched[type] && (
+                  <div className={`p-2 rounded typing-text ${matched[type].fontClass}`}>
+                    {matched[type].text}
+                  </div>
+                )}
               </div>
             ))}
+          </div>
         </div>
 
-        <div className="flex flex-col gap-6 bg-gray-100 p-6 rounded-xl shadow-md">
-          {fontTypes.map((type) => (
-            <div
-              key={type}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={() => handleDrop(type)}
-              className={`rounded-xl p-4 min-h-[100px] text-center shadow transition-all duration-300 ${
-                feedback[type] === 'correct'
-                  ? 'bg-green-200'
-                  : feedback[type] === 'incorrect'
-                  ? 'bg-red-200'
-                  : 'bg-gray-200'
-              }`}
+        {isComplete && (
+          <div className="mt-8 text-center">
+            <button
+              onClick={handleSubmit}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg"
             >
-              <div className="font-semibold mb-2 text-lg">{type}</div>
-              {matched[type] && (
-                <div className={`bg-blue-100 p-2 rounded typing-text ${matched[type].fontClass}`}>
-                  {matched[type].text}
-                </div>
-              )}
-            </div>
-          ))}
+              Next Question
+            </button>
+          </div>
+        )}
+
+        {/* Progress bar in the lower-left */}
+        <div className="fixed bottom-4 left-4 w-1/4">
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="bg-green-400 h-2 rounded-full" style={{ width: '33.33%' }} />
+          </div>
         </div>
       </div>
-
-      {isComplete && (
-        <div className="mt-8 text-center">
-          <button
-            onClick={handleSubmit}
-            className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg"
-          >
-            Next Question
-          </button>
-        </div>
-      )}
-
-      {/* Progress bar 左下角 */}
-      <div className="fixed bottom-4 left-4 w-1/4">
-        <div className="w-full bg-gray-200 rounded-full h-2">
-          <div className="bg-green-400 h-2 rounded-full" style={{ width: '33.33%' }} />
-        </div>
-      </div>
-    </div>
+    </section>
   );
 }
