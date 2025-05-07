@@ -35,11 +35,15 @@ function App() {
       break;
 
     case "quiz1":
-      content = <FontMatchQuestion onNext={() => go("quiz2")} />;
+      content = <FontMatchQuestion onNext={() => go("quiz3")} />;
       break;
 
     case "quiz2":
       content = <LetterQuiz onNext={() => go("results")} />;
+      break;
+    
+    case "quiz3":
+      content = <FontTypeUsageDrag onNext={() => go("quiz2")} />;
       break;
 
     case "results":
