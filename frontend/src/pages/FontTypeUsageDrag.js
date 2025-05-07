@@ -5,7 +5,7 @@ import './../App.css';
 const options = [
   { id: '1', text: 'Sans Serif' },
   { id: '2', text: 'Script' },
-  { id: '3', text: 'Serif' }, // 正确答案
+  { id: '3', text: 'Serif' }, 
   { id: '4', text: 'Handwriting' }
 ];
 
