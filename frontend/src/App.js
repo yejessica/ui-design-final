@@ -8,6 +8,7 @@ import LetterQuiz from "./pages/LetterQuiz";
 import ResultsPage from "./pages/ResultsPage";
 import PartsOfLetter from "./pages/PartsOfLetter";
 import FontTypeUsageDrag from "./pages/FontTypeUsageDrag";
+import IdentifyFont from "./pages/IdentifyFont";
 
 
 function App() {
@@ -44,7 +45,11 @@ function App() {
       break;
     
     case "quiz3":
-      content = <FontTypeUsageDrag onNext={() => go("quiz2")} />;
+      content = <FontTypeUsageDrag onNext={() => go("quiz4")} />;
+      break;
+
+    case "quiz4":
+      content = <IdentifyFont onNext={() => go("quiz2")} />;
       break;
 
     case "results":
