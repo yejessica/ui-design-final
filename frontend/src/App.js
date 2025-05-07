@@ -7,6 +7,7 @@ import FontMatchQuestion from "./pages/FontMatchQuestion";
 import LetterQuiz from "./pages/LetterQuiz";
 import ResultsPage from "./pages/ResultsPage";
 import PartsOfLetter from "./pages/PartsOfLetter";
+import FontTypeUsageDrag from "./pages/FontTypeUsageDrag";
 
 
 function App() {
