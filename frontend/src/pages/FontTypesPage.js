@@ -148,11 +148,11 @@ export default function FontTypesPage({ go }) {
       <button
         onClick={() => go("quiz4")}
         className="fixed right-4 top-1/2 transform -translate-y-1/2
-                   bg-blue-600 text-white p-3 rounded-full shadow-lg
-                   hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-300"
+                   bg-gray-100 text-white p-3 rounded-full shadow-lg border border-gray-400
+                   hover:bg-[#d3dee7] transition focus:outline-none focus:ring-2 focus:ring-blue-300"
         aria-label="Go to Parts of Letter page"
       >
-        <ArrowRight size={24} />
+        <ArrowRight size={24} color="black" />
       </button>
     </section>
   )
