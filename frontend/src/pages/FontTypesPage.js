@@ -116,7 +116,7 @@ export default function FontTypesPage({ go }) {
             key={card.id}
             onClick={() => handleCardClick(card.id)}
             style={{ fontFamily: card.fontFamily }}
-            className={`flex items-center justify-center py-8 
+            className={`flex items-center justify-center p-8 
                rounded-sm shadow-sm text-2xl md:text-3xl text-gray-700
                transition hover:shadow-lg active:scale-95
                ${viewedCards.has(card.id) ? 'bg-[#d3dee7]' : 'bg-gray-100'}
