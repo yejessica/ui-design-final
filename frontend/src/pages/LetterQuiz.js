@@ -93,7 +93,7 @@ const LetterQuiz = ({ onNext }) => {
             onClick={onNext}
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            Check Results
+            Next Question
           </button>
         </div>
       )}
