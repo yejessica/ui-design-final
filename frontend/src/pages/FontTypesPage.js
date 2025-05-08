@@ -119,7 +119,7 @@ export default function FontTypesPage({ go }) {
             className={`flex items-center justify-center py-8 
                rounded-sm shadow-sm text-2xl md:text-3xl text-gray-700
                transition hover:shadow-lg active:scale-95
-               ${viewedCards.has(card.id) ? 'bg-green-100' : 'bg-gray-100'}
+               ${viewedCards.has(card.id) ? 'bg-[#d3dee7]' : 'bg-gray-100'}
                ${card.extra}`}
           >
             {card.label}
