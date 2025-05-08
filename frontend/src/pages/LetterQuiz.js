@@ -55,7 +55,7 @@ const LetterQuiz = ({ onNext }) => {
       <div className="flex justify-between items-start mb-6">
         <div>
           <h2 className="text-3xl font-bold text-blue-700 mb-2">
-            1. What part of the letter is this?
+            What part of the letter is this?
           </h2>
           <p className="text-lg mb-4">Click on the correct part of the letter.</p>
 

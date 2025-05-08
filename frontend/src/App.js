@@ -9,7 +9,7 @@ import ResultsPage from "./pages/ResultsPage";
 import PartsOfLetter from "./pages/PartsOfLetter";
 import FontTypeUsageDrag from "./pages/FontTypeUsageDrag";
 import IdentifyFont from "./pages/IdentifyFont";
-
+import ImageMatchQuestion from "./pages/ImageMatchQuestion";
 
 function App() {
   const [page, setPage] = useState("home");
@@ -37,11 +37,11 @@ function App() {
       break;
 
     case "quiz1":
-      content = <FontMatchQuestion onNext={() => go("quiz3")} />;
+      content = <FontMatchQuestion onNext={() => go("quiz2")} />;
       break;
 
     case "quiz2":
-      content = <LetterQuiz onNext={() => go("results")} />;
+      content = <LetterQuiz onNext={() => go("quiz3")} />;
       break;
     
     case "quiz3":
@@ -49,7 +49,11 @@ function App() {
       break;
 
     case "quiz4":
-      content = <IdentifyFont onNext={() => go("quiz2")} />;
+      content = <IdentifyFont onNext={() => go("quiz5")} />;
+      break;
+
+    case "quiz5":
+      content = <ImageMatchQuestion onNext={() => go("results")} />;
       break;
 
     case "results":
