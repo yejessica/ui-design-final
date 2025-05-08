@@ -21,7 +21,7 @@ export default function SansSerifIdentify({ onNext }) {
 
     if (correct) {
       try {
-        await fetch('/api/quiz/3', {
+        await fetch('/api/quiz/4', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ answer: sample.id })

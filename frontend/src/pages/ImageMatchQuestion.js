@@ -61,7 +61,7 @@ export default function ImageMatchQuestion({ onNext }) {
       Object.entries(matched).map(([description, imageObj]) => [description, imageObj.id])
     );
 
-    await fetch('/api/quiz/2', {
+    await fetch('/api/quiz/5', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ matches: matchesPayload })

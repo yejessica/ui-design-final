@@ -12,5 +12,22 @@
     "question": "What part of the letter extends downward and is free on one end?",
     "choices": ["Arm", "Leg", "Ear", "Shoulder"],
     "correct": "Leg"
+  },
+  {
+    "question": "What type of font is usually used for official documents and books?",
+    "correct": "Serif"
+  },
+  {
+    "question": "Which font is Sans Serif?",
+    "correct": "1"
+  },
+  {
+    "type": "matching",
+    "correct": {
+      "The part of a lowercase letter that extends above the x-height": "1",
+      "The part of a lowercase letter that extends below the baseline": "2",
+      "The enclosed or partially enclosed space within a letter": "3",
+      "The horizontal stroke in letters like A, H, and e": "4"
+    }
   }
 ]
