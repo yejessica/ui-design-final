@@ -16,23 +16,23 @@ const imageData = [
   },
   {
     id: '3',
-    imageUrl: '/x-height.svg',
-    description: 'X-height',
-    answer: 'The height of lowercase letters excluding ascenders and descenders'
+    imageUrl: '/counter.svg',
+    description: 'Counter',
+    answer: 'The enclosed or partially enclosed space within a letter'
   },
   {
     id: '4',
-    imageUrl: '/baseline.svg',
-    description: 'Baseline',
-    answer: 'The imaginary line upon which letters sit'
+    imageUrl: '/bar.svg',
+    description: 'Bar',
+    answer: 'The horizontal stroke in letters like A, H, and e'
   }
 ];
 
 const descriptions = [
   'The part of a lowercase letter that extends above the x-height',
   'The part of a lowercase letter that extends below the baseline',
-  'The height of lowercase letters excluding ascenders and descenders',
-  'The imaginary line upon which letters sit'
+  'The enclosed or partially enclosed space within a letter',
+  'The horizontal stroke in letters like A, H, and e'
 ];
 
 export default function ImageMatchQuestion({ onNext }) {
