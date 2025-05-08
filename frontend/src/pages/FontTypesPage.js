@@ -117,7 +117,7 @@ export default function FontTypesPage({ go }) {
             onClick={() => handleCardClick(card.id)}
             style={{ fontFamily: card.fontFamily }}
             className={`flex items-center justify-center p-8 
-               rounded-sm shadow-sm text-2xl md:text-3xl text-gray-700
+               rounded-lg shadow-sm text-2xl md:text-3xl text-gray-700
                transition hover:shadow-lg active:scale-95
                ${viewedCards.has(card.id) ? 'bg-[#d3dee7]' : 'bg-gray-100'}
                ${card.extra}`}
@@ -148,7 +148,7 @@ export default function FontTypesPage({ go }) {
       <button
         onClick={() => go("quiz4")}
         className="fixed right-4 top-1/2 transform -translate-y-1/2
-                   bg-gray-100 text-white p-3 rounded-full shadow-lg border border-gray-400
+                   text-white p-3 rounded-full shadow-lg border border-gray-400
                    hover:bg-[#d3dee7] transition focus:outline-none focus:ring-2 focus:ring-blue-300"
         aria-label="Go to Parts of Letter page"
       >
