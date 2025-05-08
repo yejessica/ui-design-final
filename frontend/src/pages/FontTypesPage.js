@@ -146,7 +146,7 @@ export default function FontTypesPage({ go }) {
 
       {/* Floating arrow to the "Parts of Letter" page */}
       <button
-        onClick={() => go("quiz4")}
+        onClick={() => go("partsLetter")}
         className="fixed right-4 top-1/2 transform -translate-y-1/2
                    text-white p-3 rounded-full shadow-lg border border-gray-400
                    hover:bg-[#d3dee7] transition focus:outline-none focus:ring-2 focus:ring-blue-300"
