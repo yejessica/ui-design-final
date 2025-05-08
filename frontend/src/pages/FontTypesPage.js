@@ -10,6 +10,12 @@ import monoImage from "../assets/mono.png"
 
 export default function FontTypesPage({ go }) {
   const [openId, setOpenId] = useState(null)
+  const [viewedCards, setViewedCards] = useState(new Set())
+
+  const handleCardClick = (cardId) => {
+    setOpenId(cardId)
+    setViewedCards(prev => new Set([...prev, cardId]))
+  }
 
   const CARDS = [
     {
@@ -18,7 +24,7 @@ export default function FontTypesPage({ go }) {
       fontFamily: '"Helvetica Neue", Arial, sans-serif',
       extra: "font-sans",
       about:
-        "Sans serif means ‘without’ serifs. Sans serif typefaces are clean, versatile and flexible. They’re great for logos and headlines but can be used in body text just as easily.",
+        "Sans serif means 'without' serifs. Sans serif typefaces are clean, versatile and flexible. They're great for logos and headlines but can be used in body text just as easily.",
       usage: [
         "Sans serif fonts are incredibly versatile. They can be bold and impactful in heavier weights, or minimal and airy in lighter weights.",
         "Use bold, heavy sans serifs to call attention to something in a headline or announcement.",
@@ -32,7 +38,7 @@ export default function FontTypesPage({ go }) {
       fontFamily: 'Georgia, "Times New Roman", serif',
       extra: "font-serif",
       about:
-        "The word ‘serif’ comes from an old Dutch word for ‘line’—serifs are the little strokes at the ends of letters. Serifs add a sense of tradition and can improve legibility, especially in print.",
+        "The word 'serif' comes from an old Dutch word for 'line'—serifs are the little strokes at the ends of letters. Serifs add a sense of tradition and can improve legibility, especially in print.",
       usage: [
         "Serif fonts work well in printed materials and long-form reading; their classic look is ideal when you want a sense of tradition or authority.",
         "Use serif fonts in magazines, novels, or formal invitations for a refined feel.",
@@ -49,7 +55,7 @@ export default function FontTypesPage({ go }) {
         "Handwritten fonts mimic the appearance of real handwriting. They feel organic, imperfect, and personal, adding a human touch to digital designs.",
       usage: [
         "These fonts evoke creativity, personalization, and warmth—perfect for greeting cards or personal notes.",
-        "Use in greeting cards, playful logos, or children’s products to add warmth.",
+        "Use in greeting cards, playful logos, or children's products to add warmth.",
         "Avoid long paragraphs in handwritten fonts; reserve them for short, expressive text.",
       ],
       specimen: handwrittenImage,
@@ -62,7 +68,7 @@ export default function FontTypesPage({ go }) {
       about:
         "Formal script fonts are highly ornate and baroque, imitating cursive handwriting, and instantly recognizable by their flowing, swirly strokes.",
       usage: [
-        "Script fonts are best used where there’s room—their legibility suffers if scaled too small.",
+        "Script fonts are best used where there's room—their legibility suffers if scaled too small.",
         "They shine in wordmark logos, labels, invitations, and luxury branding.",
         "Combine scripts with simple sans-serif body text to avoid visual overload.",
       ],
@@ -108,11 +114,12 @@ export default function FontTypesPage({ go }) {
         {CARDS.map((card) => (
           <button
             key={card.id}
-            onClick={() => setOpenId(card.id)}
+            onClick={() => handleCardClick(card.id)}
             style={{ fontFamily: card.fontFamily }}
-            className={`flex items-center justify-center py-8 bg-gray-100
+            className={`flex items-center justify-center py-8 
                rounded-sm shadow-sm text-2xl md:text-3xl text-gray-700
                transition hover:shadow-lg active:scale-95
+               ${viewedCards.has(card.id) ? 'bg-green-100' : 'bg-gray-100'}
                ${card.extra}`}
           >
             {card.label}
@@ -137,7 +144,7 @@ export default function FontTypesPage({ go }) {
         />
       ))}
 
-      {/* Floating arrow to the “Parts of Letter” page */}
+      {/* Floating arrow to the "Parts of Letter" page */}
       <button
         onClick={() => go("quiz4")}
         className="fixed right-4 top-1/2 transform -translate-y-1/2
