@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { ArrowRight } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import FontInfoModal from "./FontInfoModal"
 import sansImage from "../assets/sans.png"
 import serifImage from "../assets/serif.png"
@@ -154,6 +155,19 @@ export default function FontTypesPage({ go }) {
       >
         <ArrowRight size={24} color="black" />
       </button> */}
+
+      {/* back arrow */}
+        <button
+          onClick={() => go("home")}
+          className="fixed left-4 top-1/2 transform -translate-y-1/2
+          text-white p-3 rounded-lg shadow-lg border border-gray-400
+          hover:bg-[#d3dee7] transition focus:outline-none focus:ring-2 focus:ring-blue-300
+          flex items-center justify-center gap-2"
+          aria-label="Go back to home"
+>
+  <ArrowLeft size={24} color="black" />
+  <span className="text-black">Back</span>
+</button>
 
       <button
         onClick={() => go("partsLetter")}
