@@ -47,7 +47,7 @@ const LetterQuiz = ({ onNext }) => {
       {/* Progress Bar */}
       <div className="fixed bottom-4 left-4 w-1/4">
         <div className="w-full bg-gray-200 rounded-full h-2">
-          <div className="bg-green-400 h-2 rounded-full" style={{ width: '60%' }} />
+          <div className="bg-green-400 h-2 rounded-full" style={{ width: '40%' }} />
         </div>
       </div>
 
