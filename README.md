@@ -10,11 +10,10 @@ Flask will run at http://localhost:5050
 cd frontend
 npm start
 
-**Dependencies**
+### Dependencies
 react
 user-event
 lucide-react
 jest-dom
 
-to install:
-npm install
+**npm install**
