@@ -18,6 +18,10 @@ user_progress = {"quiz": {}}
 with open(os.path.join(BASE, 'data/quiz.json')) as f:
     QUIZ = json.load(f)
 
+@app.route('/api/ping')
+def ping():
+    return jsonify({'ping': 'pong'})
+
 @app.route('/api/quiz/<int:qid>', methods=['GET', 'POST'])
 def quiz(qid):
     if request.method == 'GET':
@@ -25,7 +29,7 @@ def quiz(qid):
 
     payload = request.get_json() or {}
     user_progress['quiz'][qid] = payload
-    return ('', 204)
+    return jsonify({"status": "ok"}), 200
 
 @app.route('/api/results', methods=['GET'])
 def results():
@@ -50,4 +54,4 @@ def serve(path):
     return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(port=5050, debug=True)
