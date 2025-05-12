@@ -79,7 +79,7 @@ export default function SansSerifIdentify({ onNext }) {
 
         <div className="fixed bottom-4 left-4 w-1/4">
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div className="bg-green-400 h-2 rounded-full" style={{ width: '40%' }} />
+            <div className="bg-green-400 h-2 rounded-full" style={{ width: '80%' }} />
           </div>
         </div>
       </div>
