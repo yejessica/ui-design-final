@@ -1,9 +1,11 @@
 // src/pages/ResultsPage.jsx
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ResultsPage({ onRestart }) {
   const [score, setScore] = useState(0);
   const [total, setTotal] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('/api/results')
@@ -13,6 +15,14 @@ export default function ResultsPage({ onRestart }) {
         setTotal(total);
       });
   }, []);
+
+  const handleTryAgain = () => {
+    onRestart();
+  };
+
+  const handleReturnHome = () => {
+    navigate('/');
+  };
 
   return (
     <section className="hero min-h-screen">
@@ -24,12 +34,12 @@ export default function ResultsPage({ onRestart }) {
         <div className="flex gap-4">
           <button
             className="bg-primary text-white py-2 px-4 rounded hover:bg-primaryHover"
-            onClick={onRestart}
+            onClick={handleTryAgain}
           >Try Again
           </button>
           <button
             className="bg-primary text-white py-2 px-4 rounded hover:bg-primaryHover"
-            onClick={onRestart}
+            onClick={handleReturnHome}
           >Return to Home
           </button>
         </div>

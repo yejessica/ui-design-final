@@ -43,7 +43,7 @@ const LetterQuiz = ({ onNext }) => {
   };
 
   return (
-    <div className="p-8 relative min-h-screen">
+    <div className="pt-20 pb-20 pl-80 pr-80 relative min-h-screen">
       {/* Progress Bar */}
       <div className="fixed bottom-4 left-4 w-1/4">
         <div className="w-full bg-gray-200 rounded-full h-2">
@@ -52,22 +52,29 @@ const LetterQuiz = ({ onNext }) => {
       </div>
 
       {/* Question + Image */}
-      <div className="flex justify-between items-start mb-6">
+      <div className="flex justify-between items-start gap-2">
         <div>
-          <h2 className="text-3xl font-bold text-primaryHover mb-2">
+          <h2 className="text-3xl font-bold text-primaryHover mb-4">
             What part of the letter is this?
           </h2>
-          <p className="text-lg mb-4">Click on the correct part of the letter.</p>
+          <p className="text-lg mb-6">Click on the correct part of the letter.</p>
 
-          <div className="text-xl space-y-3">
+          <div className="text-xl space-y-4">
             {options.map((option, idx) => (
-              <div
+              <button
                 key={idx}
                 onClick={() => handleSelect(option)}
-                className={`cursor-pointer ${getOptionStyle(option)}`}
+                className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all duration-200
+                  ${getOptionStyle(option)}
+                  ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50 hover:border-primary'}
+                  ${selected === option ? 'border-primary bg-gray-50' : 'border-gray-200'}
+                  ${correct && option === correctAnswer ? 'border-green-500 bg-green-50' : ''}
+                  ${selected === option && option !== correctAnswer ? 'border-red-500 bg-red-50' : ''}`}
+                disabled={disabled}
               >
-                {String.fromCharCode(97 + idx)}. {option}
-              </div>
+                <span className="font-medium text-gray-500 mr-2">{String.fromCharCode(97 + idx)}.</span>
+                {option}
+              </button>
             ))}
           </div>
         </div>
