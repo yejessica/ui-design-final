@@ -37,6 +37,13 @@ export default function HoverImageSwap({go}) {
   
     return (
   <div className="min-h-screen flex relative">
+
+    {/* Instructions */}
+    <div className="absolute top-6 left-6 text-[20px] text-black z-40 max-w-sm leading-snug">
+      Click a part of the letter in the sidebar to see its definition and illustration.
+    </div>
+
+
     {/* Image Display */}
     <div className="flex-1 bg-black flex items-center justify-center">
       <img
@@ -71,7 +78,7 @@ export default function HoverImageSwap({go}) {
       <button
         onClick={() => go("quizIntro")}
         className="w-full mt-4 text-white p-3 rounded-lg shadow-lg border border-gray-400
-                  hover:bg-[#d3dee7] transition focus:outline-none focus:ring-2 focus:ring-blue-300
+                  hover:bg-primaryLight transition focus:outline-none focus:ring-2 focus:ring-blue-300
                   flex items-center justify-center gap-2"
         aria-label="Go to Quiz Intro page"
       >
@@ -85,7 +92,7 @@ export default function HoverImageSwap({go}) {
       onClick={() => go("fontTypes")}
       className="fixed left-4 top-1/2 transform -translate-y-1/2
                  text-white p-3 rounded-lg shadow-lg border border-gray-400
-                 hover:bg-[#d3dee7] transition focus:outline-none focus:ring-2 focus:ring-blue-300
+                 hover:bg-primaryLight transition focus:outline-none focus:ring-2 focus:ring-blue-300
                  flex items-center justify-center gap-2"
       aria-label="Go back to Font Types page"
     >

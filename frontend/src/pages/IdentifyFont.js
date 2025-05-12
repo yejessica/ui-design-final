@@ -41,7 +41,7 @@ export default function SansSerifIdentify({ onNext }) {
   return (
     <section className="hero min-h-screen p-10">
       <div className="quiz-container max-w-3xl mx-auto">
-        <h2 className="text-3xl font-bold text-blue-600 mb-4">Which font is Sans Serif?</h2>
+        <h2 className="text-3xl font-bold text-primaryHover mb-4">Which font is Sans Serif?</h2>
         <p className="text-lg text-gray-700 mb-8">Click the sample below that represents a Sans Serif font.</p>
 
         <div className="grid gap-6">
@@ -70,7 +70,7 @@ export default function SansSerifIdentify({ onNext }) {
           <div className="mt-8">
             <button
               onClick={onNext}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded"
+              className="bg-primary hover:bg-primaryHover text-white font-bold py-2 px-6 rounded"
             >
               Next Question
             </button>

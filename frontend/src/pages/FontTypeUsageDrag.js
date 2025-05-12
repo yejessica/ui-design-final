@@ -42,7 +42,7 @@ export default function FontTypeUsageDrag({ onNext }) {
   return (
     <section className="hero min-h-screen">
       <div className="quiz-container">
-        <h2 className="text-3xl font-bold text-blue-600 mb-2">Font Type Usage</h2>
+        <h2 className="text-3xl font-bold text-primaryHover mb-2">Font Type Usage</h2>
         <p className="mb-2 text-gray-700 text-lg">Drag the correct font type into the answer box.</p>
         <p className="mb-8 text-xl text-gray-700">
           What type of font is usually used for official documents and books?
@@ -87,7 +87,7 @@ export default function FontTypeUsageDrag({ onNext }) {
           <div className="mt-8 text-center">
             <button
               onClick={handleSubmit}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg"
+              className="bg-primary hover:bg-primaryHover text-white font-bold py-2 px-6 rounded-lg"
             >
               Next Question
             </button>

@@ -21,11 +21,19 @@ export default function ResultsPage({ onRestart }) {
         <p className="text-2xl mb-6">
           {score} / {total}
         </p>
-        <button
-          className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-          onClick={onRestart}
-        >Return to Home
-        </button>
+        <div className="flex gap-4">
+          <button
+            className="bg-primary text-white py-2 px-4 rounded hover:bg-primaryHover"
+            onClick={onRestart}
+          >Try Again
+          </button>
+          <button
+            className="bg-primary text-white py-2 px-4 rounded hover:bg-primaryHover"
+            onClick={onRestart}
+          >Return to Home
+          </button>
+        </div>
+        
       </div>
     </section>
   );

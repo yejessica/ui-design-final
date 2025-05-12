@@ -48,7 +48,7 @@ export default function FontMatchQuestion({ onNext }) {
   return (
     <section className="hero min-h-screen">
       <div className="quiz-container">
-        <h2 className="text-3xl font-bold text-blue-600 mb-2">Mix &amp; Match</h2>
+        <h2 className="text-3xl font-bold text-primaryHover mb-2">Mix &amp; Match</h2>
         <p className="mb-2 text-gray-700 text-lg">Hover over and drag each sentence to the correct font category.</p>
         <p className="mb-8 text-xl text-gray-700">Match each font to the correct spot!</p>
 
@@ -97,7 +97,7 @@ export default function FontMatchQuestion({ onNext }) {
           <div className="mt-8 text-center">
             <button
               onClick={handleSubmit}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg"
+              className="bg-primary hover:bg-primaryHover text-white font-bold py-2 px-6 rounded-lg"
             >
               Next Question
             </button>

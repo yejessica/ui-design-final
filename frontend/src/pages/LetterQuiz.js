@@ -54,7 +54,7 @@ const LetterQuiz = ({ onNext }) => {
       {/* Question + Image */}
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h2 className="text-3xl font-bold text-blue-700 mb-2">
+          <h2 className="text-3xl font-bold text-primaryHover mb-2">
             What part of the letter is this?
           </h2>
           <p className="text-lg mb-4">Click on the correct part of the letter.</p>
@@ -91,7 +91,7 @@ const LetterQuiz = ({ onNext }) => {
         <div className="mt-8">
           <button
             onClick={onNext}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-primary hover:bg-primaryHover text-white font-bold py-2 px-4 rounded"
           >
             Next Question
           </button>
