@@ -30,11 +30,11 @@ export default function ResultsPage({ onRestart, onReturnHome }) {
           {score} / {total}
         </p>
         <div className="flex gap-4">
-          <button
+          {/* <button
             className="bg-primary text-white py-2 px-4 rounded hover:bg-primaryHover"
             onClick={handleTryAgain}
           >Try Again
-          </button>
+          </button> */}
           <button
             className="bg-primary text-white py-2 px-4 rounded hover:bg-primaryHover"
             onClick={handleReturnHome}
