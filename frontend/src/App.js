@@ -57,7 +57,10 @@ function App() {
       break;
 
     case "results":
-      content = <ResultsPage onRestart={() => go("home")} />;
+      content = <ResultsPage 
+        onRestart={() => go("home")} 
+        onReturnHome={() => go("home")} 
+      />;
       break;
 
     default:

@@ -4,15 +4,15 @@ import { ArrowLeft } from "lucide-react";
 // import { useNavigate } from 'react-router-dom';
 
 const letterParts = {
-  'Eye': 'The enclosed space in letters like "e" and "a"',
-  'Counter': 'The enclosed space in letters like "o" and "d"',
+  'Eye': 'The enclosed space in the letter "e"',
+  'Counter': 'The enclosed space in letters like "o", "a", and "d"',
   'Shoulder': 'The curved stroke that connects the stem to the serif in letters like "n" and "m"',
   'Bar': 'The horizontal stroke in letters like "A" and "H"',
   'Bowl': 'The curved part of letters like "b", "d", "p", and "q"',
   'Arm': 'The horizontal stroke that extends from the stem in letters like "T" and "F"',
   'Leg': 'The diagonal stroke in letters like "K" and "R"',
   'Stem': 'The main vertical stroke in letters like "l" and "b"',
-  'Descender': 'The part of a letter that extends below the baseline, as in "g" and "y"',
+  'Descender': 'The part of a letter that extends below the baseline, as in "g"',
   'Ascender': 'The part of a letter that extends above the x-height, as in "b" and "d"',
   'Serif': 'The small decorative stroke at the end of a letter\'s main stroke'
 };

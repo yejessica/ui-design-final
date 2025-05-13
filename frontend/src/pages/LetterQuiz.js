@@ -29,6 +29,7 @@ const LetterQuiz = ({ onNext }) => {
       }
     } else {
       setDisabled(true);
+      setShowCheckResults(true);
       setTimeout(() => {
         setSelected(null);
         setDisabled(false);

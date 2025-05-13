@@ -1,11 +1,9 @@
 // src/pages/ResultsPage.jsx
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-export default function ResultsPage({ onRestart }) {
+export default function ResultsPage({ onRestart, onReturnHome }) {
   const [score, setScore] = useState(0);
   const [total, setTotal] = useState(0);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('/api/results')
@@ -21,7 +19,7 @@ export default function ResultsPage({ onRestart }) {
   };
 
   const handleReturnHome = () => {
-    navigate('/');
+    onReturnHome();
   };
 
   return (
@@ -43,7 +41,6 @@ export default function ResultsPage({ onRestart }) {
           >Return to Home
           </button>
         </div>
-        
       </div>
     </section>
   );

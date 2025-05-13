@@ -48,9 +48,6 @@ def results():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
-    full = os.path.join(app.static_folder, path)
-    if path and os.path.exists(full):
-        return send_from_directory(app.static_folder, path)
     return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
